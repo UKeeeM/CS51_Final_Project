@@ -61,14 +61,13 @@ class Tree:
 # 0     4
 #   2      8
 tree = Tree()
-tree.add(1)
-tree.add(2)
 tree.add(3)
 tree.add(4)
-tree.add(5)
+tree.add(0)
+tree.add(8)
+tree.add(2)
 tree.printTree()
-
-"""print (tree.find(3)).v
+print (tree.find(3)).v
 print tree.find(10)
 tree.deleteTree()
-tree.printTree()"""
+tree.printTree()

@@ -39,3 +39,4 @@ print (vars)
 print (data_len)
 print (titanic_X[1])
 print (titanic_y[582])
+
