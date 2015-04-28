@@ -2,6 +2,7 @@
 import numpy as np
 import pandas as pd
 import os
+import sys
 import csv
 
 # Setting absolute path at the project folder
@@ -35,8 +36,31 @@ feature_names = feature_names[[1,4,10]]
 vars = feature_names
 data_len = len(titanic_X)
 
+#dates = date_range('1/1/2000', periods=8)
+#df = DataFrame(randn(8,4), index=dates, columns=['A', 'B', 'C', 'D'])
+
 print (vars)
-print (data_len)
-print (titanic_X[1])
-print (titanic_y[582])
+#print (titanic_X)
+#print (titanic_X[1])
+#print (titanic_y[1])
+#print (type(titanic_X))
+
+df = pd.DataFrame(titanic_X)
+df.columns = vars
+df['survived'] = titanic_y
+
+# We now have a complete df
+
+# Practicing subsetting
+# Subset a new value where people survived
+
+#print (df[df['age'] > 0])
+new_df = df[df['age'] != 'NA']
+#print (new_df)
+
+len(new_df.columns)
+df_age = new_df[['pclass']]
+print(df_age)
+print (type(df_age))
+print (sys.version)
 
