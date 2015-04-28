@@ -8,6 +8,12 @@ class Tree:
     def __init__(self):
         self.root = None
 
+    def getLeft(self):
+        return self.l
+
+    def getRight(self): 
+        return self.r
+
     def getRoot(self):
         return self.root
 
