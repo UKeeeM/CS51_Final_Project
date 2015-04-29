@@ -6,7 +6,7 @@ import sys
 import csv
 
 # Setting absolute path at the project folder
-os.path.abspath("C:\Users\You-Myeong\Documents\GitHub\CS51_Final_Project")
+os.chdir('/Users/seungjaecha/Desktop/CS51_Final_Project')
 
 data_df = pd.read_csv('titanic.csv')
 #titanic_X = data_df[:, [1,4,10]]
@@ -15,7 +15,7 @@ with open('titanic.csv', 'rt') as csvfile:
 	titanic_reader = csv.reader(csvfile, delimiter=',',
 		quotechar = '"')
 
-	row = titanic_reader.__next__()
+	row = titanic_reader.next()
 	feature_names = np.array(row)
 
 	titanic_X, titanic_y = [], []
@@ -49,18 +49,5 @@ df = pd.DataFrame(titanic_X)
 df.columns = vars
 df['survived'] = titanic_y
 
-# We now have a complete df
-
-# Practicing subsetting
-# Subset a new value where people survived
-
-#print (df[df['age'] > 0])
-new_df = df[df['age'] != 'NA']
-#print (new_df)
-
-len(new_df.columns)
-df_age = new_df[['pclass']]
-print(df_age)
-print (type(df_age))
-print (sys.version)
-
+print(df.values.tolist())
+titanic_list = df.values.tolist()

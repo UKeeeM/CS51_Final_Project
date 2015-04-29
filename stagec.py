@@ -2,16 +2,17 @@ import numpy as np
 #import pandas as pd
 import os
 import csv
+import random
 #import treepredict as tp
 
 #sc_file = pd.read_csv('sc.csv')
 
-<<<<<<< HEAD
+#<<<<<<< HEAD
 #sc_df = pd.DataFrame(sc_file)
-=======
-sc_df = pd.DataFrame(sc_file)
-sc_df = sc_df[['pgtime', 'age', 'eet', 'g2', 'grade', 'gleason', 'ploidy', 'pgstat']]
->>>>>>> origin/master
+#=======
+#sc_df = pd.DataFrame(sc_file)
+#sc_df = sc_df[['pgtime', 'age', 'eet', 'g2', 'grade', 'gleason', 'ploidy', 'pgstat']]
+#>>>>>>> origin/master
 
 #print(sc_df)
 
@@ -35,4 +36,8 @@ my_data=[['slashdot','USA','yes',18,'None'],
         ['google','UK','yes',18,'Basic'],
         ['kiwitobes','France','yes',19,'Basic']]
 
-print (my_data)
+#print (my_data[0])
+#print (my_data[1])
+#print (my_data[2])
+#print(random.choice(my_data))
+#print(len(my_data))
