@@ -86,12 +86,3 @@ next_branches <- function(data)
   return(list(best_set1, best_set2, best_criteria))
 }
 
-# build tree by building on branches
-#build_tree <- function(data)
-#{
-#  
-#}
-
-#classify
-
-
