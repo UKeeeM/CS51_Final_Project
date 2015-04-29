@@ -6,7 +6,7 @@ import sys
 import csv
 
 # Setting absolute path at the project folder
-os.path.abspath("/Desktop/CS51_Final_Project/")
+os.path.abspath("C:\Users\You-Myeong\Documents\GitHub\CS51_Final_Project")
 
 data_df = pd.read_csv('titanic.csv')
 #titanic_X = data_df[:, [1,4,10]]
