@@ -64,9 +64,13 @@ def giniimpurity(rows):
   total=len(rows)
   counts=uniquecounts(rows)
   imp=0
+  print total
   for k1 in counts:
+    print k1
     p1=float(counts[k1])/total
+    print p1
     for k2 in counts:
+      print k2
       if k1==k2: continue
       p2=float(counts[k2])/total
       imp+=p1*p2

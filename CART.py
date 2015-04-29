@@ -59,8 +59,29 @@ def divideset(rows,column,value):
                 set2.append(row)
         return(set1,set2)
 
-print divideset(my_data,3,18)
-                
+#calculate the proportions of end results so we can do calculations.
+
+"""
+CHANGE THIS FUNCTION TO SOMETHING DUMBER :P
+""" 
+def uniquecounts(rows):
+   results={}
+   for row in rows:
+      # The result is the last column
+      r=row[len(row)-1]
+      if r not in results: results[r]=0
+      results[r]+=1
+   return results
+
+def giniimpurity(rows):
+    #this is the impurity
+    imp = 0
+    #this is the counts of results 
+    counts uniquecounts(rows)
+    
+    
+
+    
           
             
 
