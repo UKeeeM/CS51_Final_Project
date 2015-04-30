@@ -64,13 +64,9 @@ def giniimpurity(rows):
   total=len(rows)
   counts=uniquecounts(rows)
   imp=0
-  print total
   for k1 in counts:
-    print k1
     p1=float(counts[k1])/total
-    print p1
     for k2 in counts:
-      print k2
       if k1==k2: continue
       p2=float(counts[k2])/total
       imp+=p1*p2
@@ -243,7 +239,9 @@ def buildtree(rows,scoref=entropy):
       (set1,set2)=divideset(rows,col,value)
       
       # Information gain
+      print set1
       p=float(len(set1))/len(rows)
+      print p
       gain=current_score-p*scoref(set1)-(1-p)*scoref(set2)
       if gain>best_gain and len(set1)>0 and len(set2)>0:
         best_gain=gain

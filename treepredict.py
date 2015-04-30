@@ -1,5 +1,4 @@
 #from PIL import Image,ImageDraw
-#from PIL import Image,ImageDraw
 
 class decisionnode:
   def __init__(self,col=-1,value=None,results=None,tb=None,fb=None):
@@ -118,7 +117,7 @@ def printtree(tree,indent=''):
     #print (indent+'F->',)
     #printtree(tree.fb,indent+'  ')
 
-     
+'''      
 def getwidth(tree):
 	if tree.tb==None and tree.fb==None: return 1
 	return getwidth(tree.tb)+getwidth(tree.fb)
@@ -126,6 +125,7 @@ def getwidth(tree):
 def getdepth(tree):
 	if tree.tb==None and tree.fb==None: return 0
 	return max(getdepth(tree.tb),getdepth(tree.fb))+1
+
 
 
 def drawtree(tree,jpeg='tree.jpg'):
@@ -161,7 +161,11 @@ def drawnode(draw,tree,x,y):
   else:
     txt=' \n'.join(['%s:%d'%v for v in tree.results.items(  )])
     draw.text((x-20,y),txt,(0,0,0))  
+<<<<<<< HEAD
     '''
+=======
+'''
+>>>>>>> origin/master
 
 def classify(observation,tree):
   if tree.results!=None:
@@ -176,7 +180,10 @@ def classify(observation,tree):
       if v==tree.value: branch=tree.tb
       else: branch=tree.fb
     return classify(observation,branch)    
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 '''
 def prune(tree,mingain):
   # If the branches aren't leaves, then prune them
@@ -197,7 +204,7 @@ def prune(tree,mingain):
 
     # Test the reduction in entropy
     delta=entropy(tb+fb)-(entropy(tb)+entropy(fb)/2)
-    if delta<mingain:
+if delta<mingain:
       # Merge the branches
       tree.tb,tree.fb=None,None
       tree.results=uniquecounts(tb+fb)
