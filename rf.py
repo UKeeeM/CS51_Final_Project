@@ -5,6 +5,7 @@ import os
 import random
 import treepredict as tp
 import stagec
+import copy
 
 my_data=[['slashdot','USA','yes',18,'None'],
         ['google','France','yes',23,'Premium'],
@@ -23,6 +24,22 @@ my_data=[['slashdot','USA','yes',18,'None'],
         ['google','UK','yes',18,'Basic'],
         ['kiwitobes','France','yes',19,'Basic']]
 
+# Subset a data by removing nth column
+def subdat(data, n):
+	# making sure we are working with a copy of data
+	# and not modifying the data set itself
+	sub = copy.deepcopy(data)
+	
+	for row in sub:
+		del row[n]
+	return(sub)	
+
+# Subset an observation
+def subdat_obs(obs,n):
+	sub = copy.deepcopy(obs)
+	del sub[n]
+	return(sub)
+
 # Bootstrap sample (sampling with replacement) our data
 # Return a new bootstrap data set
 def bootstrap(data,n):
@@ -32,14 +49,32 @@ def bootstrap(data,n):
 	return (new_data)
 
 # Build a random forest with ntree many trees
-def build_rf(data, n, ntree):
-	trees = []
+def build_rf(data, n, ntree, observation):
+	results = []
 	# take a bootstrap sample and run a tree
 	for x in range(0,ntree):
 		boot_data = bootstrap(data,n)
+
+		# random column to be removed
+		# make sure the last column (response variable) is not removed
+		rand_column = np.random.randint(len(data[0])-1)
+
+		# boot_data should be subsetted here
+		sub_data = subdat(boot_data, rand_column)
+
+		# observation should be subsetted here by the same chosen column
+		sub_obs = subdat_obs(observation, rand_column)
+
 		# run a tree on that bootsampled data
-		trees.append(tp.buildtree(boot_data))
-	return(trees)
+		this_tree = tp.buildtree(sub_data)
+
+		# classification of this specific tree should be done here
+		t_result = tp.classify(sub_obs, this_tree)
+		
+		for key in t_result.keys():
+			results.append(key)
+
+	return(results)
 
 # Returns the most common element in the list
 def most_common(lst):
@@ -47,18 +82,14 @@ def most_common(lst):
 
 # Random Forest classifier will figure out the result
 # that most trees vote on
-def rf_classify(observation, rf):
-	# a dictionary that keeps count of all the results
+def rf_classify(rf):
+	# a list that keeps count of all the results
 	result_count = []
 
-	for i in range(0, len(rf)):
-		t_result = tp.classify(observation, rf[i])
-		for key in t_result.keys():
-			result_count.append(key)
-
-	mode = most_common(result_count)
-	mode_count = result_count.count(mode)
-	proportion = (float(mode_count) / float(len(result_count)))
+	# shows the proportion of trees that voted for the mode
+	mode = most_common(rf)
+	mode_count = rf.count(mode)
+	proportion = (float(mode_count) / float(len(rf)))
 
 	return(mode, proportion)
 
