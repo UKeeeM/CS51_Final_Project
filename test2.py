@@ -37,7 +37,7 @@ vars = feature_names
 data_len = len(titanic_X)
 
 #dates = date_range('1/1/2000', periods=8)
-#df = DataFrame(randn(8,4), index=dates, columns=['A', 'B', 'C', 'D'])
+#df = DataFrame(randn(8,4), insdex=dates, columns=['A', 'B', 'C', 'D'])
 
 print (vars)
 #print (titanic_X)
@@ -51,3 +51,4 @@ df['survived'] = titanic_y
 
 print(df.values.tolist())
 titanic_list = df.values.tolist()
+print(titanic_list[0])

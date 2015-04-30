@@ -73,11 +73,15 @@ def buildtree(rows,scoref=entropy):
   best_sets=None
 
   column_count=len(rows[0])-1
+  #print("COLUMN COUNT" + str(column_count))
   for col in range(0,column_count):
     # Generate the list of different values in
     # this column
     column_values={}
     for row in rows:
+       #print("COLUMN VAL: "+ str(column_values))
+       #print("ROW: "+ str(row))
+       #print("COL: "+str(col))
        column_values[row[col]]=1
     # Now try dividing the rows up for each value
     # in this column
@@ -100,18 +104,19 @@ def buildtree(rows,scoref=entropy):
   else:
     return decisionnode(results=uniquecounts(rows))
 
+'''
 def printtree(tree,indent=''):
  # Is this a leaf node?
  if tree.results!=None:
     print (str(tree.results))
  else:
     # Print the criteria
-    print (str(tree.col)+':'+str(tree.value)+'?') 
+    #print (str(tree.col)+':'+str(tree.value)+'?') 
     # Print the branches
-    print (indent+'T->',)
-    printtree(tree.tb,indent+'  ')
-    print (indent+'F->',)
-    printtree(tree.fb,indent+'  ')
+    #print (indent+'T->',)
+    #printtree(tree.tb,indent+'  ')
+    #print (indent+'F->',)
+    #printtree(tree.fb,indent+'  ')
 
      
 def getwidth(tree):
@@ -156,7 +161,7 @@ def drawnode(draw,tree,x,y):
   else:
     txt=' \n'.join(['%s:%d'%v for v in tree.results.items(  )])
     draw.text((x-20,y),txt,(0,0,0))  
-
+    '''
 
 def classify(observation,tree):
   if tree.results!=None:
@@ -172,6 +177,7 @@ def classify(observation,tree):
       else: branch=tree.fb
     return classify(observation,branch)    
 
+'''
 def prune(tree,mingain):
   # If the branches aren't leaves, then prune them
   if tree.tb.results==None:
@@ -195,6 +201,6 @@ def prune(tree,mingain):
       # Merge the branches
       tree.tb,tree.fb=None,None
       tree.results=uniquecounts(tb+fb)
-
+'''
 
 
