@@ -1,38 +1,18 @@
 
 import numpy as np
-#import pandas as pd
 import os
 import random
-import treepredict as tp
+import CART_tree as cart
 import copy
-import test2
+import training_data as td
 
-my_data=[['slashdot','USA','yes',18,'None'],
-        ['google','France','yes',23,'Premium'],
-        ['digg','USA','yes',24,'Basic'],
-        ['kiwitobes','France','yes',23,'Basic'],
-        ['google','UK','no',21,'Premium'],
-        ['(direct)','New Zealand','no',12,'None'],
-        ['(direct)','UK','no',21,'Basic'],
-        ['google','USA','no',24,'Premium'],
-        ['slashdot','France','yes',19,'None'],
-        ['digg','USA','no',18,'None'],
-        ['google','UK','no',18,'None'],
-        ['kiwitobes','UK','no',19,'None'],
-        ['digg','New Zealand','yes',12,'Basic'],
-        ['slashdot','UK','no',21,'None'],
-        ['google','UK','yes',18,'Basic'],
-        ['kiwitobes','France','yes',19,'Basic']]
 
 # Subset a data by removing nth column
 def subdat(data, n):
 	# making sure we are working with a copy of data
 	# and not modifying the data set itself
 	sub = copy.deepcopy(data)
-	#print ("SUBDAT")
 	for row in sub:
-		#print ("deleteing " + str(n) + "th column")
-		#print ("from" + str(row))
 		del row[n]
 	return(sub)	
 
@@ -56,7 +36,7 @@ def build_rf(data, n, ntree, observation):
 	# take a bootstrap sample and run a tree
 	for x in range(0,ntree):
 		boot_data = bootstrap(data,n)
-
+		# print("the nth tree is " + str(x))
 		# random column to be removed
 		# make sure the last column (response variable) is not removed
 		rand_column = np.random.randint(len(data[0])-1)
@@ -68,18 +48,14 @@ def build_rf(data, n, ntree, observation):
 		sub_obs = subdat_obs(observation, rand_column)
 
 		# run a tree on that bootsampled data
-		this_tree = tp.buildtree(sub_data, tp.giniimpurity)
+		this_tree = cart.create(sub_data, cart.giniimpurity)
 
 		# classification of this specific tree should be done here
-		t_result = tp.classify(sub_obs, this_tree)
-		
-		#print ("printing keys")
-		#print (t_result)
+		t_result = cart.classify(sub_obs, this_tree)
 
 		for key in t_result.keys():
-			#print ("appending" + key)
 			results.append(key)
-
+	
 	return(results)
 
 
@@ -89,7 +65,7 @@ def most_common(lst):
 
 # Random Forest classifier will figure out the result
 # that most trees vote on
-def rf_classify(rf):
+def rf_vote(rf):
 	# a list that keeps count of all the results
 	result_count = []
 
@@ -100,15 +76,53 @@ def rf_classify(rf):
 
 	return(mode, proportion)
 
+def test_accuracy(training_data, test_data):
+	
+	accuracy_count = 0
+	
+	for row in range(0,len(test_data)):
+		one_row = test_data[row]
+		rf_build = build_rf(training_data, 100, 200, one_row)
+		rf_decision = rf_vote(rf_build)
+		print (row)
+
+		# Comparing prediction and the actual result
+		if (rf_decision[0] == one_row[-1]):
+			accuracy_count = accuracy_count + 1
 
 
-#if __name__ == "__main__":
-	#print ("hello")
-	#print (my_data)
-	predict = ['kiwitobes','France','yes',19,'Basic']
-	#predict2 = ['3rd', '70.0000', 'male', '?']
-	#check = build_rf(test2.titanic_list, 100, 500, predict2)
-	check = build_rf(my_data, 16, 1000, predict)
-	#print(rf_classify(check))
+	accuracy_rate = float(accuracy_count) / float(len(test_data))
+	return(accuracy_rate)
+
+if __name__ == "__main__":
+	#pima_predict = [95, 66, 38, 16.6, 0.334, 25, '?']
+	#check1 = build_rf(td.pima, 100, 100, pima_predict)
+	#print(rf_vote(check1))
+
+	#titanic_predict = ['3rd', 'male', 70.0, '?']
+	#check2 = build_rf(td.titanic, 392, 300, titanic_predict)
+	#print(rf_vote(check2))
+
+	#stagec_predict = [2, 35, 2, 10.26, 1, 4, 'diploid', '?']
+	#check3 = build_rf(td.stagec, 134, 300, stagec_predict)
+	#print(rf_vote(check3))
+	
+	#spam_predict = [5, 20, 10, 10, 0, '?']
+	#check4 = build_rf(td.spam, 200, 200, spam_predict)
+	#print(rf_vote(check4))
+	#print("hello")
+
+	#pima_accuracy = test_accuracy(td.pima_training, td.pima_testing)
+	#print (pima_accuracy)
+
+	#titanic_accuracy = test_accuracy(td.titanic_training, td.titanic_testing)
+	#print (titanic_accuracy)
+
+	#stagec_accuracy = test_accuracy(td.stagec_training, td.stagec_testing)
+	#print (stagec_accuracy)
+
+	spam_accuracy = test_accuracy(td.spam_training, td.spam_testing)
+	print (spam_accuracy)
+
 
 

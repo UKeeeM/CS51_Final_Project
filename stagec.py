@@ -9,8 +9,8 @@ import csv
 
 #sc_df = pd.DataFrame(sc_file)
 
-sc_df = pd.DataFrame(sc_file)
-sc_df = sc_df[['pgtime', 'age', 'eet', 'g2', 'grade', 'gleason', 'ploidy', 'pgstat']]
+#sc_df = pd.DataFrame(sc_file)
+#sc_df = sc_df[['pgtime', 'age', 'eet', 'g2', 'grade', 'gleason', 'ploidy', 'pgstat']]
 
 #print(sc_df)
 
@@ -34,4 +34,4 @@ my_data=[['slashdot','USA','yes',18,'None'],
         ['google','UK','yes',18,'Basic'],
         ['kiwitobes','France','yes',19,'Basic']]
 
-print (my_data)
+#print (my_data)
