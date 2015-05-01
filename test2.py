@@ -15,7 +15,7 @@ with open('titanic.csv', 'rt') as csvfile:
 	titanic_reader = csv.reader(csvfile, delimiter=',',
 		quotechar = '"')
 
-	row = titanic_reader.__next__()
+	row = titanic_reader.next()
 	feature_names = np.array(row)
 
 	titanic_X, titanic_y = [], []
@@ -49,11 +49,11 @@ df = pd.DataFrame(titanic_X)
 df.columns = vars
 df['survived'] = titanic_y
 
-<<<<<<< HEAD
+
 print(df.values.tolist())
 titanic_list = df.values.tolist()
 print(titanic_list[0])
-=======
+
 # We now have a complete df
 
 # Practicing subsetting
@@ -68,5 +68,3 @@ df_age = new_df[['pclass']]
 print(df_age)
 print (type(df_age))
 print (sys.version)
-
->>>>>>> origin/master

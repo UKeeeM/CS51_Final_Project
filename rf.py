@@ -4,7 +4,6 @@ import numpy as np
 import os
 import random
 import treepredict as tp
-import stagec
 import copy
 import test2
 
@@ -106,10 +105,10 @@ def rf_classify(rf):
 #if __name__ == "__main__":
 	#print ("hello")
 	#print (my_data)
-	#predict = ['kiwitobes','France','yes',19,'Basic']
+	predict = ['kiwitobes','France','yes',19,'Basic']
 	#predict2 = ['3rd', '70.0000', 'male', '?']
 	#check = build_rf(test2.titanic_list, 100, 500, predict2)
-	#check = build_rf(my_data, 16, 1000, predict)
+	check = build_rf(my_data, 16, 1000, predict)
 	#print(rf_classify(check))
 
 

@@ -161,9 +161,8 @@ def drawnode(draw,tree,x,y):
   else:
     txt=' \n'.join(['%s:%d'%v for v in tree.results.items(  )])
     draw.text((x-20,y),txt,(0,0,0))  
-<<<<<<< HEAD
+'''<<<<<<< HEAD
     '''
-=======
 '''
 >>>>>>> origin/master
 
@@ -183,7 +182,7 @@ def classify(observation,tree):
 <<<<<<< HEAD
 
 =======
->>>>>>> origin/master
+>>>>>>> origin/master'''
 '''
 def prune(tree,mingain):
   # If the branches aren't leaves, then prune them
