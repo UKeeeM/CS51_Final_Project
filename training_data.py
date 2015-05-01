@@ -6,7 +6,7 @@ from random import shuffle
 
 os.path.abspath("/Users/seungjaecha/Desktop/CS51_Final_Project")
 
-titanic_csv = pd.read_csv('titanic.csv')
+titanic_csv = pd.read_csv('titanic2.csv')
 pima_csv = pd.read_csv('pima.csv')
 stagec_csv = pd.read_csv('stagec.csv')
 spam_csv = pd.read_csv('spam.csv')
