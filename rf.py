@@ -95,7 +95,6 @@ def test_accuracy(training_data, test_data):
 		if (rf_decision[0] == one_row[-1]):
 			accuracy_count = accuracy_count + 1
 
-
 	accuracy_rate = float(accuracy_count) / float(len(test_data))
 	return(accuracy_rate)
 

@@ -9,7 +9,6 @@ import os as os
 import numpy as np
 import pandas as pd
 import csv
-from random import shuffle
 
 os.path.abspath("/Users/seungjaecha/Desktop/CS51_Final_Project")
 
