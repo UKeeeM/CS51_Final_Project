@@ -1,10 +1,11 @@
-# This is a function to help us with preprocessing data in a format
-# that our random tree will follow
-
+'''
+CS51 Final CS51_Final_Project
+take_in_txt.py
+This is a function to help us with preprocessing data 
+in a format that our random tree will follow
+'''
 import os 
 import string
-import rf as rf
-import training_data as td
 
 #counts the number of words in a file
 def count(f):
@@ -83,22 +84,6 @@ def bigram_freq(f):
 		else:
 			frequency
 	return frequency 
-
-
-if __name__ == "__main__":
-	f = raw_input('enter your email text' + "\n")
-	row = []
-	row.append(count(f))
-	row.append(numbercount(f))
-	row.append(keyword_freq(f))
-	row.append(bigram_freq(f))
-	row.append(bigram_freq(f))
-
-	spam_predict = row
-	rf_result = rf.build_rf(td.spam, 500, 200, spam_predict)
-	print(rf.rf_vote(rf_result))
-
-
 
 #Below were the codes that we used to export the spam and ham training data 	
 '''

@@ -1,4 +1,9 @@
+'''
+CS51 Final CS51_Final_Project
+CART_tree.py
 
+Implementation of the decision tree class and related functions
+'''
 
 # We initialize the basecase for the code itself, so that we can return thi
 class decision_tree:
