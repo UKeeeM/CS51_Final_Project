@@ -2,8 +2,9 @@
 # that our random tree will follow
 
 import os 
-import string 
-#import csv
+import string
+import rf as rf
+import training_data as td
 
 #counts the number of words in a file
 def count(f):
@@ -20,7 +21,13 @@ key_word = ["money", "adult", "movie","download" "win", "free", "shipping" , "to
 			"loans","subscibe","stock", "lega","life","insurance","income","instant",
 			"remove","sex","hookup","sample","satisfaction", "earn", "$","medium","penis","enlarge","lengthen",
 			"medicine","urgent","vicodin", "fees", "XXX", "offer","winner","xanax", "investment"
-			"crisis","miracle","age", "doctor","aging", "shipping", "boss","fitness","pain","injury","premature","date"]
+			"crisis","miracle","age", "doctor","aging", "shipping", "lottery",
+			"boss","fitness","pain","injury","premature","date", "enlargement", "pills", "pill",
+			"diet", "quick", "fast", "now", "cash", "nigerian", "prince", "fantastic", "wife",
+			"bride", "single", "area", "neighborhood", "close", "satisfied", "opportunities",
+			"loving", "sexual", "fantasy", "huge", "enormous", "bed", "tonight", "beloved",
+			"boost", "invited", "more", "benefits", "benefit", "reminder", "pleasant",
+			"pleasance", "vigorous", "alternative"]
 
 def keyword_freq(f):
 	frequency = 0
@@ -79,14 +86,17 @@ def bigram_freq(f):
 
 
 if __name__ == "__main__":
-	f = raw_input('enter your email subject text, then email text')
+	f = raw_input('enter your email text' + "\n")
 	row = []
 	row.append(count(f))
 	row.append(numbercount(f))
 	row.append(keyword_freq(f))
 	row.append(bigram_freq(f))
 	row.append(bigram_freq(f))
-	print row 
+
+	spam_predict = row
+	rf_result = rf.build_rf(td.spam, 500, 200, spam_predict)
+	print(rf.rf_vote(rf_result))
 
 
 

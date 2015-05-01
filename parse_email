@@ -1,9 +1,0 @@
-import email
-
-a = """From email archive"""
-stuff = email.message_from_string(a)
-if stuff.is_multipart():
-	for parts in stuff.get_payload():
-		print parts.get_payload()
-else:
-	print stuff.get_payload()

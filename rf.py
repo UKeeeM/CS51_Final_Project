@@ -1,4 +1,9 @@
+'''
+CS51 Final CS51_Final_Project
+rf.py
 
+This is where random forest is implemented
+'''
 import numpy as np
 import os
 import random
@@ -39,6 +44,7 @@ def build_rf(data, n, ntree, observation):
 		# print("the nth tree is " + str(x))
 		# random column to be removed
 		# make sure the last column (response variable) is not removed
+		# rand_column = np.random.randint(len(data[0])-1)
 		rand_column = np.random.randint(len(data[0])-1)
 
 		# boot_data should be subsetted here
@@ -84,7 +90,6 @@ def test_accuracy(training_data, test_data):
 		one_row = test_data[row]
 		rf_build = build_rf(training_data, 100, 200, one_row)
 		rf_decision = rf_vote(rf_build)
-		print (row)
 
 		# Comparing prediction and the actual result
 		if (rf_decision[0] == one_row[-1]):
@@ -107,10 +112,9 @@ if __name__ == "__main__":
 	#check3 = build_rf(td.stagec, 134, 300, stagec_predict)
 	#print(rf_vote(check3))
 	
-	#spam_predict = [5, 20, 10, 10, 0, '?']
-	#check4 = build_rf(td.spam, 200, 200, spam_predict)
-	#print(rf_vote(check4))
-	#print("hello")
+	spam_predict = [3, 0, 0, 0, '?']
+	check4 = build_rf(td.spam, 200, 200, spam_predict)
+	print(rf_vote(check4))
 
 	#pima_accuracy = test_accuracy(td.pima_training, td.pima_testing)
 	#print (pima_accuracy)
@@ -121,8 +125,8 @@ if __name__ == "__main__":
 	#stagec_accuracy = test_accuracy(td.stagec_training, td.stagec_testing)
 	#print (stagec_accuracy)
 
-	spam_accuracy = test_accuracy(td.spam_training, td.spam_testing)
-	print (spam_accuracy)
+	#spam_accuracy = test_accuracy(td.spam_training, td.spam_testing)
+	#print (spam_accuracy)
 
 
 
